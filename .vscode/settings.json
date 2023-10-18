@@ -1,0 +1,3 @@
+{
+	"editor.formatOnSave": true, // 存檔時自動 format
+}
