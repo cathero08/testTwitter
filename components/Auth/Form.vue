@@ -5,7 +5,7 @@
 				<LogoTwitter />
 			</div>
 		</div>
-		<TabGroup>
+		<TabGroup :selectedIndex="selectedTab" @change="changeTab">
 			<TabList class="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
 				<Tab as="template" v-slot="{ selected }">
 					<button
@@ -34,30 +34,43 @@
 				<TabPanel>
 					<div class="w-full">
 						<div class="pt-5 space-y-6">
-							<UIInput label="Username" placeholder="@username" v-model="data.username" />
-							<UIInput label="Password" placeholder="*****" type="password" v-model="data.password" />
-							<UIButton @click="handleLogin" liquid :disabled="isButtonDisabled"> Login </UIButton>
+							<UIInput maxlength="15" label="Username" placeholder="dev1" v-model="data.username" />
+							<UIInput maxlength="15" label="Password" placeholder="password" type="password" v-model="data.password" @keyup.enter="handleLogin" />
+							<UIButton @click="handleLogin" liquid :disabled="isButtonDisabled" :loading="data.loading"> Login </UIButton>
 						</div>
 					</div>
 				</TabPanel>
 				<TabPanel>
 					<div class="w-full">
 						<div class="pt-5 space-y-6">
-							<UIInput label="Username" placeholder="@username" v-model="dataRegister.username" />
-							<UIInput label="Password" placeholder="*****" type="password" v-model="dataRegister.password" />
-							<UIInput label="Repeat Password" placeholder="*****" type="password" v-model="dataRegister.repeatPassword" />
-							<UIInput label="E-mail" placeholder="123.@yahoo.com" v-model="dataRegister.email" />
-							<UIInput label="Nick name" placeholder="loveCat" v-model="dataRegister.name" />
-							<UIButton @click="handleRegister" liquid :disabled="isButtonDisabledRegister"> Create </UIButton>
+							<UIInput maxlength="15" label="Username" placeholder="dev1" v-model="dataRegister.username" />
+							<UIInput maxlength="15" label="Password" placeholder="password" type="password" v-model="dataRegister.password" />
+							<UIInput maxlength="15" label="Repeat Password" placeholder="repeat password" type="password" v-model="dataRegister.repeatPassword" />
+							<UIInput maxlength="40" label="E-mail" placeholder="123.@yahoo.com" v-model="dataRegister.email" />
+							<UIInput maxlength="15" label="Nick name" placeholder="loveCat" v-model="dataRegister.name" />
+							<UIButton @click="handleRegister" liquid :disabled="isButtonDisabledRegister" :loading="data.loading"> Create </UIButton>
 						</div>
 					</div>
 				</TabPanel>
 			</TabPanels>
 		</TabGroup>
+		<UIPopMessage :is-open="showModal" @massageClose="showModal = false">
+			<div class="flex justify-center">{{ msg }}</div>
+		</UIPopMessage>
 	</div>
 </template>
 <script setup>
 	import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
+
+	// 錯誤彈窗
+	const showModal = ref(false);
+	const msg = ref('');
+
+	// Tab組件
+	const selectedTab = ref(0);
+	const changeTab = (index) => {
+		selectedTab.value = index;
+	};
 
 	// 登入
 	const data = reactive({
@@ -76,12 +89,14 @@
 	});
 
 	const handleLogin = async () => {
+		if (isButtonDisabled.value) return;
 		data.loading = true;
 		const { login } = useAuth();
 		try {
 			await login(data);
 		} catch (error) {
-			console.log(error);
+			msg.value = error.response.statusText;
+			showModal.value = true;
 		} finally {
 			data.loading = false;
 		}
@@ -92,8 +107,16 @@
 		const { postRegister } = useAuth();
 		try {
 			await postRegister(dataRegister);
+			// 清空
+			Object.keys(dataRegister).forEach((key) => {
+				dataRegister[key] = '';
+			});
+			changeTab(0);
+			msg.value = 'Registration successful. Please log in again.';
+			showModal.value = true;
 		} catch (error) {
-			console.log(error);
+			msg.value = error.response.statusText;
+			showModal.value = true;
 		} finally {
 			data.loading = false;
 		}

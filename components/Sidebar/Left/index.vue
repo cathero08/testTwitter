@@ -32,8 +32,8 @@
 
 		<!-- 個人資訊 -->
 		<div
-			class="flex flex-row items-center justify-center p-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
-			:class="defaultTransition"
+			class="border flex flex-row items-center justify-center p-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
+			:class="[defaultTransition, twitterBorderColor]"
 			@click="emit('onLogout')"
 		>
 			<div class="flex flex-row">
@@ -50,7 +50,7 @@
 			<!-- icon -->
 			<div class="hidden ml-auto xl:block">
 				<div class="w-6 h-6">
-					<ChevronDownIcon />
+					<ArrowLeftOnRectangleIcon />
 				</div>
 			</div>
 		</div>
@@ -58,8 +58,19 @@
 </template>
 <script setup>
 	import { HomeIcon } from '@heroicons/vue/24/solid';
-	import { HashtagIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon, BellIcon, PencilIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
-	const { defaultTransition } = useTailwindConfig();
+	import {
+		HashtagIcon,
+		InboxIcon,
+		BookmarkIcon,
+		DocumentTextIcon,
+		UserIcon,
+		EllipsisHorizontalCircleIcon,
+		BellIcon,
+		PencilIcon,
+		ChevronDownIcon,
+		ArrowLeftOnRectangleIcon,
+	} from '@heroicons/vue/24/outline';
+	const { defaultTransition, twitterBorderColor } = useTailwindConfig();
 
 	const emit = defineEmits(['onTweet', 'onLogout']);
 

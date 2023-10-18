@@ -30,10 +30,15 @@
 				<!-- <NuxtPage /> -->
 			</div>
 
-			<!-- 彈窗 -->
+			<!-- 發文彈窗 -->
 			<UIModal :isOpen="postTweetModal" @onClose="handleModalClose">
 				<TweetForm :replyTo="replyTweet" :user="user" showReply @onSuccess="handleFormSuccess" />
 			</UIModal>
+
+			<!-- 訊息彈窗 -->
+			<!-- <UIPopMessage :isOpen="testets" @massageClose="testets = false">
+				<div> asjdfl; </div>
+			</UIPopMessage> -->
 		</div>
 	</div>
 </template>
@@ -49,6 +54,8 @@
 	const user = useAuthUser();
 	const emitter = useEmitter();
 	const replyTweet = useReplyTweet();
+
+	// const testets = ref(true);
 
 	emitter.$on('replyTweet', (tweet) => {
 		openPostTweetModal(tweet);
@@ -75,8 +82,8 @@
 		openPostTweetModal(null);
 	};
 
-	const handleUserLogout = () => {
-		logout();
+	const handleUserLogout = async () => {
+		await logout();
 	};
 
 	onBeforeMount(() => {

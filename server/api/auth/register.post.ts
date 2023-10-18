@@ -1,4 +1,4 @@
-import { createUser } from '~/server/db/users';
+import { createUser, getUserByUsername } from '~/server/db/users';
 import { userTransformer } from '~/server/transformers/user';
 
 export default defineEventHandler(async (event) => {
@@ -34,6 +34,19 @@ export default defineEventHandler(async (event) => {
 		profileImage: 'https://picsum.photos/200/200',
 	};
 
+	// 先確認有無重複
+	const checkUnique = await getUserByUsername(userData.username);
+	if (checkUnique) {
+		return sendError(
+			event,
+			createError({
+				statusCode: 400,
+				statusMessage: 'Username is already used',
+			})
+		);
+	}
+
+	// 創建帳號
 	const user = await createUser(userData);
 
 	return {

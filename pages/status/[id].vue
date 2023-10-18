@@ -2,7 +2,7 @@
 	<div>
 		<MainSection title="TWEET" :loading="loading">
 			<Head>
-				<Title></Title>
+				<Title>TWEET / {{ user.name }}</Title>
 			</Head>
 			<TweetDetails :user="user" :tweet="tweets" />
 		</MainSection>

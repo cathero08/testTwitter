@@ -3,6 +3,7 @@
 		<span :class="textFontSize">
 			<slot></slot>
 		</span>
+		<UISpinnerBtn class="ml-3" v-if="loading" />
 	</button>
 </template>
 <script setup>
@@ -16,6 +17,10 @@
 			default: 'md',
 		},
 		liquid: {
+			type: Boolean,
+			default: false,
+		},
+		loading: {
 			type: Boolean,
 			default: false,
 		},

@@ -6,6 +6,7 @@
 				:type="props.type"
 				:value="props.modelValue"
 				:placeholder="props.placeholder"
+				:maxlength="props.maxlength"
 				@input="(event) => emits('update:modelValue', event.target.value)"
 				class="block w-full px-4 border-gray-300 rounded-full shadow-sm focus:ring-blue-500 sm:text-sm"
 			/>
@@ -31,6 +32,10 @@
 		type: {
 			type: String,
 			default: 'text',
+		},
+		maxlength: {
+			type: String,
+			default: 200,
 		},
 	});
 </script>
