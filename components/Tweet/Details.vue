@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="h-full">
 		<TweetItem :tweet="tweet" />
 		<TweetForm :user="user" :reply-to="props.tweet" placeholder="Tweet your reply" @onSuccess="handleFormSuccess" />
 		<TweetListFeed :tweets="replies" />

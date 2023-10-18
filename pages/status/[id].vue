@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<MainSection title="TWEET" :loading="loading">
+	<div class="h-full">
+		<MainSection title="TWEET" :loading="loading" class="h-full" back>
 			<Head>
 				<Title>TWEET / {{ user.name }}</Title>
 			</Head>

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<MainSection title="Search" :loading="loading">
+		<MainSection title="Search" :loading="loading" back>
 			<Head>
 				<Title>Search</Title>
 			</Head>

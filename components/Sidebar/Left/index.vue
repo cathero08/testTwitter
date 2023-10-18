@@ -11,7 +11,7 @@
 
 		<!-- 選單列表 -->
 		<div class="mt-2 xl:space-y-8">
-			<SidebarLeftTab v-for="(item, index) in lists" :active="index == 0">
+			<SidebarLeftTab v-for="(item, index) in lists" :active="item.to == route" :to="item.to" :style="{ opacity: item.work ? 1 : 0.6 }">
 				<template v-slot:icon>
 					<!-- <HomeIcon /> -->
 					<component :is="item.icon" />
@@ -81,15 +81,16 @@
 		},
 	});
 
+	const route = computed(() => useRoute().path);
 	// 列表
 	const lists = reactive([
-		{ icon: HomeIcon, title: 'Home' },
-		{ icon: HashtagIcon, title: 'Explore' },
-		{ icon: BellIcon, title: 'Notifications' },
-		{ icon: InboxIcon, title: 'Messages' },
-		{ icon: BookmarkIcon, title: 'Bookmarks' },
-		{ icon: DocumentTextIcon, title: 'Lists' },
-		{ icon: UserIcon, title: 'Profile' },
-		{ icon: EllipsisHorizontalCircleIcon, title: 'More' },
+		{ icon: HomeIcon, title: 'Home', work: true, to: '/' },
+		{ icon: HashtagIcon, title: 'Explore', work: false },
+		{ icon: BellIcon, title: 'Notifications', work: false },
+		{ icon: InboxIcon, title: 'Messages', work: false },
+		{ icon: BookmarkIcon, title: 'Bookmarks', work: false },
+		{ icon: DocumentTextIcon, title: 'Lists', work: false },
+		{ icon: UserIcon, title: 'Profile', work: true, to: '/profile' },
+		{ icon: EllipsisHorizontalCircleIcon, title: 'More', work: false },
 	]);
 </script>
