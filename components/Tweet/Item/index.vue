@@ -2,7 +2,7 @@
 	<div>
 		<TweetItemHeader :tweet="props.tweet" />
 		<div :class="tweetBodyWrapper">
-			<p class="shrink w-auto font-medium text-gray-800 dark:text-white" :class="textSize">
+			<p class="whitespace-pre-wrap shrink w-auto font-medium text-gray-800 dark:text-white pr-4" :class="textSize">
 				{{ props.tweet.text }}
 			</p>
 			<div v-for="img in tweet.mediaFiles" :key="img.id" class="flex my-3 mr-2 border-2 rounded-2xl" :class="twitterBorderColor">
