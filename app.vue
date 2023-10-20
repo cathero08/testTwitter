@@ -39,6 +39,9 @@
 
 			<!-- 發文彈窗 -->
 			<UIModal :isOpen="postTweetModal" @onClose="handleModalClose">
+				<div class="w-5 h-5 cursor-pointer" @click="handleModalClose">
+					<XMarkIcon />
+				</div>
 				<TweetForm :replyTo="replyTweet" :user="user" showReply @onSuccess="handleFormSuccess" />
 			</UIModal>
 
@@ -51,6 +54,7 @@
 </template>
 
 <script setup>
+	import { XMarkIcon } from '@heroicons/vue/24/solid';
 	import useEmitter from './composables/useEmitter';
 
 	const darkMode = ref(false);
