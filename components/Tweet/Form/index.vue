@@ -7,6 +7,9 @@
 			<TweetItem :tweet="props.replyTo" v-if="props.replyTo && props.showReply" hiddenAction />
 			<TweetFormInput :user="props.user" :placeholder="props.placeholder" @onSubmit="handleFormSubmit" />
 		</div>
+		<UIPopMessage :is-open="showModal" @massageClose="showModal = false">
+			<div class="flex justify-center">{{ msg }}</div>
+		</UIPopMessage>
 	</div>
 </template>
 <script setup>
@@ -32,6 +35,10 @@
 	const emit = defineEmits(['onSuccess']);
 	const { postTweet } = useTweets();
 
+	// 錯誤彈窗
+	const showModal = ref(false);
+	const msg = ref('');
+
 	const loading = ref(false);
 
 	const handleFormSubmit = async (data) => {
@@ -44,7 +51,8 @@
 			});
 			emit('onSuccess', res.tweet);
 		} catch (error) {
-			console.log(error);
+			msg.value = error.response.statusText;
+			showModal.value = true;
 		} finally {
 			loading.value = false;
 		}

@@ -9,6 +9,9 @@
 			</div>
 			<TweetListFeed :tweets="homeTweets" />
 		</MainSection>
+		<UIPopMessage :is-open="showModal" @massageClose="showModal = false">
+			<div class="flex justify-center">{{ msg }}</div>
+		</UIPopMessage>
 	</div>
 </template>
 <script setup>
@@ -19,6 +22,10 @@
 	const user = useAuthUser();
 	const loading = ref(false);
 	const homeTweets = ref([]);
+
+	// 錯誤彈窗
+	const showModal = ref(false);
+	const msg = ref('');
 
 	const handHomeSuccess = (tweet) => {
 		navigateTo({
@@ -32,7 +39,8 @@
 			const { tweets } = await getTweets();
 			homeTweets.value = tweets;
 		} catch (error) {
-			console.log(error);
+			msg.value = error.response.statusText;
+			showModal.value = true;
 		} finally {
 			loading.value = false;
 		}

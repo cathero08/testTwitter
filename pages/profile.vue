@@ -43,6 +43,9 @@
 		<div class="fullscreen" @click="toggleFullScreen" v-if="isFullScreen">
 			<img :src="imageSource" alt="Image" />
 		</div>
+		<UIPopMessage :is-open="showModal" @massageClose="showModal = false">
+			<div class="flex justify-center">{{ msg }}</div>
+		</UIPopMessage>
 	</div>
 </template>
 <script setup>
@@ -51,6 +54,10 @@
 	const { getTweets } = useTweets();
 	const { postProfilePhoto } = useUser();
 	const { useAuthUser, useAuthLoading, getUser } = useAuth();
+
+	// 錯誤彈窗
+	const showModal = ref(false);
+	const msg = ref('');
 
 	const loading = useAuthLoading();
 	const loadingPhoto = ref(false);
@@ -82,7 +89,8 @@
 			const { tweets } = await getTweets();
 			userTweets.value = tweets;
 		} catch (error) {
-			console.log(error);
+			msg.value = error.response.statusText;
+			showModal.value = true;
 		}
 	};
 
@@ -108,8 +116,9 @@
 		try {
 			await postProfilePhoto({ mediaFiles: [selectedFile.value] });
 			await getUser();
-		} catch (err) {
-			console.log(err);
+		} catch (error) {
+			msg.value = error.response.statusText;
+			showModal.value = true;
 		} finally {
 			loadingPhoto.value = false;
 		}

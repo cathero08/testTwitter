@@ -6,7 +6,13 @@ export default defineEventHandler(async (event) => {
 		const refreshToken = cookie.refresh_token;
 		await deleteRefreshTokenByToken(refreshToken);
 	} catch (error) {
-		console.log(error);
+		sendError(
+			event,
+			createError({
+				statusCode: 400,
+				statusMessage: 'deleteRefreshTokenByToken is wrong',
+			})
+		);
 	}
 	sendRefreshToken(event, null);
 

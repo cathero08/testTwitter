@@ -58,5 +58,6 @@
 		{ title: '#cat', count: '3.5k Tweets' },
 		{ title: 'owo', count: '1k Tweets' },
 		{ title: 'w', count: '4.1k Tweets' },
+		{ title: '貓', count: '500.1k Tweets' },
 	]);
 </script>

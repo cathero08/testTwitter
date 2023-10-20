@@ -6,11 +6,18 @@
 			</Head>
 			<TweetDetails :user="user" :tweet="tweets" />
 		</MainSection>
+		<UIPopMessage :is-open="showModal" @massageClose="showModal = false">
+			<div class="flex justify-center">{{ msg }}</div>
+		</UIPopMessage>
 	</div>
 </template>
 <script setup>
 	const { getTweetById } = useTweets();
 	const { useAuthUser } = useAuth();
+
+	// 錯誤彈窗
+	const showModal = ref(false);
+	const msg = ref('');
 
 	const user = useAuthUser();
 	const loading = ref(false);
@@ -31,7 +38,8 @@
 			const { tweet } = await getTweetById(getTweetIdFromRoute());
 			tweets.value = tweet;
 		} catch (error) {
-			console.log(error);
+			msg.value = error.response.statusText;
+			showModal.value = true;
 		} finally {
 			loading.value = false;
 		}
