@@ -8,7 +8,7 @@ export default () => {
 		});
 
 		return useFetchApi('/api/user/profileimage', {
-			method: 'POST',
+			method: 'PUT',
 			body: form,
 		});
 	};

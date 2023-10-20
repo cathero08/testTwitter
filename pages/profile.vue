@@ -20,7 +20,9 @@
 							<div class="opacity-0 absolute top-0 left-0 z-10 w-full h-full bg-black/5 cursor-pointer hover:opacity-100" :class="defaultTransition" @click="toggleFullScreen"></div>
 						</div>
 						<!-- 上傳圖片 -->
-						<div class="w-1/3" @click="handleImageClick"> 哈哈ㄏ </div>
+						<div class="w-1/3">
+							<UIButton liquid @click="handleImageClick">Change photo</UIButton>
+						</div>
 					</div>
 					<h1 class="text-xl font-bold"> {{ user.name }} </h1>
 					<h2 class="text-sm text-gray-500 mb-3"> {{ user.handle }} </h2>
