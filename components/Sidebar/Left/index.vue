@@ -49,7 +49,7 @@
 			</div>
 			<!-- icon -->
 			<div class="hidden ml-auto xl:block">
-				<div class="w-6 h-6">
+				<div class="w-6 h-6 dark:text-gray-500">
 					<ArrowLeftOnRectangleIcon />
 				</div>
 			</div>

@@ -24,7 +24,7 @@
 							<UIButton liquid @click="handleImageClick">Change photo</UIButton>
 						</div>
 					</div>
-					<h1 class="text-xl font-bold"> {{ user.name }} </h1>
+					<h1 class="text-xl font-bold dark:text-white"> {{ user.name }} </h1>
 					<h2 class="text-sm text-gray-500 mb-3"> {{ user.handle }} </h2>
 					<div class="flex items-center">
 						<div class="w-5 h-5 text-gray-500 mr-2">
@@ -35,7 +35,7 @@
 				</div>
 				<!-- tweets -->
 				<div class="font-bold h-[50px] flex items-center text-lg">
-					<div class="px-4 h-full flex items-center border-b-4 border-blue-400"> Tweets </div>
+					<div class="px-4 h-full flex items-center border-b-4 border-blue-400 dark:text-white"> Tweets </div>
 				</div>
 				<TweetListFeed :tweets="filterTweets" />
 			</div>

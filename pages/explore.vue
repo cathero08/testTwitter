@@ -21,7 +21,7 @@
 					/>
 				</div>
 				<!-- what's happening -->
-				<h1 class="px-3 py-4 font-bold text-xl">Your Pop Trend</h1>
+				<h1 class="px-3 py-4 font-bold text-xl dark:text-white">Your Pop Trend</h1>
 				<div class="px-3 py-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dim-300" :class="[defaultTransition, twitterBorderColor]" v-for="item in whatsHappeningItems" @click="gotoSearch(item)">
 					<h2 class="font-bold text-gray-800 text-base dark:text-white">{{ item.title }}</h2>
 					<p class="text-xs text-gray-400">{{ item.count }}</p>
