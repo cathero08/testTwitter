@@ -69,6 +69,7 @@
 		PencilIcon,
 		ChevronDownIcon,
 		ArrowLeftOnRectangleIcon,
+		MagnifyingGlassIcon,
 	} from '@heroicons/vue/24/outline';
 	const { defaultTransition, twitterBorderColor } = useTailwindConfig();
 
@@ -85,7 +86,7 @@
 	// 列表
 	const lists = reactive([
 		{ icon: HomeIcon, title: 'Home', work: true, to: '/' },
-		{ icon: HashtagIcon, title: 'Explore', work: false },
+		{ icon: MagnifyingGlassIcon, title: 'Explore', work: true, to: '/explore' },
 		{ icon: BellIcon, title: 'Notifications', work: false },
 		{ icon: InboxIcon, title: 'Messages', work: false },
 		{ icon: BookmarkIcon, title: 'Bookmarks', work: false },

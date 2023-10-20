@@ -9,5 +9,12 @@
 	</div>
 </template>
 <script setup>
-	const loading = ref(false);
+	const { useAuthUser, initAuth, useAuthLoading, logout } = useAuth();
+
+	const loading = useAuthLoading();
+	const user = useAuthUser();
+
+	setTimeout(() => {
+		console.log(user.value);
+	}, 5000);
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div class="flex flex-col">
 		<!-- Search bar -->
-		<div class="relative m-2">
+		<div class="relative m-2" v-show="!show">
 			<div class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer">
 				<div class="w-6 h-6" @click="handleSearch">
 					<MagnifyingGlassIcon />
@@ -17,7 +17,7 @@
 		</div>
 
 		<!-- what's happening -->
-		<SidebarRightPreviewCard title="What's happening">
+		<SidebarRightPreviewCard title="What's happening" v-show="!show">
 			<SidebarRightPreviewCardItem v-for="item in whatsHappeningItems" @click="gotoSearch(item)">
 				<div>
 					<h2 class="font-bold text-gray-800 text-base dark:text-white">{{ item.title }}</h2>
@@ -63,6 +63,7 @@
 	const emitter = useEmitter();
 
 	const search = ref('');
+	const show = computed(() => useRoute().path === '/explore');
 
 	const handleSearch = () => {
 		useRouter().push({
