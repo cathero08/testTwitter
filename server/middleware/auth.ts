@@ -4,7 +4,7 @@ import { getUserById } from '../db/users';
 
 export default defineEventHandler(async (event) => {
 	// 定義需要處理的端點
-	const endpoints = ['/api/auth/user', '/api/user/tweets', '/api/user/tweets/:id'];
+	const endpoints = ['/api/auth/user', '/api/user/tweets', '/api/user/tweets/:id', '/api/user/profileimage'];
 
 	// 檢查是否由此中間件處理
 	const isHandledByThisMiddleware = endpoints.some((endpoint) => {

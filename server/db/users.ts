@@ -33,3 +33,15 @@ export const getUserById = (userid: string | undefined) => {
 		},
 	});
 };
+
+// 根據使用ID更換圖片
+export const updateUser = (userid: string | undefined, img: string | undefined) => {
+	return prisma.user.update({
+		where: {
+			id: userid,
+		},
+		data: {
+			profileImage: img,
+		},
+	});
+};

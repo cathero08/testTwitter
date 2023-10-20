@@ -2,7 +2,7 @@
 	<div class="border-x h-full" :class="twitterBorderColor">
 		<h2 class="sticky top-0 px-4 py-3 bg-white/80 backdrop-blur-md dark:bg-dim-900/80 text-xl font-bold text-gray-800 dark:text-gray-100">
 			<p class="flex items-center">
-				<p class="w-5 h-5 mr-5 cursor-pointer" @click="goback" v-if="props.back">
+				<p class="w-4 h-4 mr-5 cursor-pointer" @click="goback" v-if="props.back">
 					<ArrowLeftIcon/>
 				</p>
 				<p>{{ props.title }}</p>

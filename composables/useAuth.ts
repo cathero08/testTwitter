@@ -146,5 +146,5 @@ export default () => {
 		});
 	};
 
-	return { login, useAuthToken, useAuthUser, useAuthLoading, initAuth, logout, postRegister };
+	return { login, useAuthToken, useAuthUser, useAuthLoading, initAuth, logout, postRegister, getUser };
 };
