@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<label for="" class="block pl-3 ml-px text-sm font-medium text-gray-700">{{ props.label }}</label>
+		<label for="" class="block pl-3 ml-px text-sm font-medium text-gray-700 dark:text-gray-100">{{ props.label }}</label>
 		<div class="mt-1">
 			<input
 				:type="props.type"

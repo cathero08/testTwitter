@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<TabGroup :selectedIndex="selectedTab" @change="changeTab">
-			<TabList class="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+			<TabList class="flex space-x-1 rounded-xl bg-blue-900/20 p-1 dark:bg-blue-400">
 				<Tab as="template" v-slot="{ selected }">
 					<button
 						:class="[
