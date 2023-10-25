@@ -35,7 +35,7 @@
 			});
 			searchTweets.value = tweets;
 		} catch (error) {
-			msg.value = error.response.statusText;
+			msg.value = error.response._data.statusMessage || error.response.statusText;
 			showModal.value = true;
 		} finally {
 			loading.value = false;

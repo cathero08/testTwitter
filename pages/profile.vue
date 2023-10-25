@@ -89,7 +89,7 @@
 			const { tweets } = await getTweets();
 			userTweets.value = tweets;
 		} catch (error) {
-			msg.value = error.response.statusText;
+			msg.value = error.response._data.statusMessage || error.response.statusText;
 			showModal.value = true;
 		}
 	};
@@ -117,7 +117,7 @@
 			await postProfilePhoto({ mediaFiles: [selectedFile.value] });
 			await getUser();
 		} catch (error) {
-			msg.value = error.response.statusText;
+			msg.value = error.response._data.statusMessage || error.response.statusText;
 			showModal.value = true;
 		} finally {
 			loadingPhoto.value = false;

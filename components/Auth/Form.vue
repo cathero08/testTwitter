@@ -95,7 +95,7 @@
 		try {
 			await login(data);
 		} catch (error) {
-			msg.value = error.response.statusText;
+			msg.value = error.response._data.statusMessage || error.response.statusText;
 			showModal.value = true;
 		} finally {
 			data.loading = false;
@@ -115,7 +115,7 @@
 			msg.value = 'Registration successful. Please log in again.';
 			showModal.value = true;
 		} catch (error) {
-			msg.value = error.response.statusText;
+			msg.value = error.response._data.statusMessage || error.response.statusText;
 			showModal.value = true;
 		} finally {
 			data.loading = false;
