@@ -1,5 +1,5 @@
 <template>
-	<div class="grid grid-cols-4 w-full bg-white border-t" :class="[defaultTransition, twitterBorderColor]">
+	<div class="grid grid-cols-4 w-full bg-white dark:bg-dim-900 border-t" :class="[defaultTransition, twitterBorderColor]">
 		<div class="col-span-1 justify-center flex" v-for="(item, index) in lists">
 			<SidebarLeftTab :active="item.to == route" :to="item.to" :style="{ opacity: item.work ? 1 : 0.6 }">
 				<template v-slot:icon>
@@ -17,7 +17,7 @@
 					@click="emit('onLogout')"
 				>
 					<!-- <img :src="props.user.profileImage" class="w-8 h-8 rounded-full" /> -->
-					<div class="w-6 h-6">
+					<div class="w-6 h-6 dark:text-white">
 						<ArrowLeftOnRectangleIcon />
 					</div>
 				</div>
